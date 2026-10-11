@@ -11,12 +11,14 @@ const archivo = Archivo({
   subsets: ["latin"],
   variable: "--font-archivo",
   weight: ["300", "400", "500", "700", "900"],
+  display: "swap",
 });
 
 const archivoNarrow = Archivo_Narrow({
   subsets: ["latin"],
   variable: "--font-archivo-narrow",
   weight: ["400", "500", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {

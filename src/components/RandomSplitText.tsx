@@ -89,7 +89,7 @@ export default function RandomSplitText({
               delay: isTriggered || (!scrollYProgress && !triggerOnView) ? delay : 0,
               ease: [0.25, 0.1, 0.25, 1],
             }}
-            className="inline-block"
+            className="inline-block transform-gpu will-change-transform"
           >
             {char === " " ? "\u00A0" : char}
           </motion.span>

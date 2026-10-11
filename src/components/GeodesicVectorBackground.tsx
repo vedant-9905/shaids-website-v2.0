@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, memo } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -65,7 +65,7 @@ const { BASE_VERTICES, BASE_SUB_FACES } = (() => {
   return { BASE_VERTICES: allVertices, BASE_SUB_FACES: subFaces };
 })();
 
-function SingleGeodesicSphere({ size, pitch, yaw, strokeWidth = 1.5 }: SphereProps) {
+const SingleGeodesicSphere = memo(function SingleGeodesicSphere({ size, pitch, yaw, strokeWidth = 1.5 }: SphereProps) {
   const triangles = useMemo(() => {
     const cosP = Math.cos(pitch), sinP = Math.sin(pitch);
     const cosY = Math.cos(yaw), sinY = Math.sin(yaw);
@@ -119,6 +119,7 @@ function SingleGeodesicSphere({ size, pitch, yaw, strokeWidth = 1.5 }: SpherePro
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="shrink-0"
+      shapeRendering="geometricPrecision"
     >
       <g stroke="#ffffff" strokeWidth={strokeWidth} strokeLinejoin="round" strokeLinecap="round" fill="none">
         {triangles.map((pts, idx) => (
@@ -127,7 +128,7 @@ function SingleGeodesicSphere({ size, pitch, yaw, strokeWidth = 1.5 }: SpherePro
       </g>
     </svg>
   );
-}
+});
 
 // Hoisted Static Sphere Constellation Data
 const SPHERE_CLUSTER = [

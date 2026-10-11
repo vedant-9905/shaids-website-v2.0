@@ -26,20 +26,13 @@ function ScrambleChar({
   delay: number;
   enableScramble: boolean;
 }) {
+  const isPlain = !enableScramble || char.trim() === "";
   const [displayChar, setDisplayChar] = useState(char);
-  const [isDecoded, setIsDecoded] = useState(false);
+  const [isDecoded, setIsDecoded] = useState(isPlain);
 
   useEffect(() => {
-    if (!isInView) {
+    if (!isInView || isPlain) {
       return;
-    }
-
-    if (!enableScramble || char.trim() === "") {
-      const timer = setTimeout(() => {
-        setIsDecoded(true);
-        setDisplayChar(char);
-      }, 0);
-      return () => clearTimeout(timer);
     }
 
     // Non-sequential scattered delay across arbitrary character positions

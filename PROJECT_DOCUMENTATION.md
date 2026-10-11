@@ -82,6 +82,12 @@ The SHAIDS Website v2.0 has been fully upgraded to the modern Next.js 16.4.0 + R
 10. **Runtime & Geometry Performance Optimization:**
     * **`GeodesicVectorBackground.tsx`:** Precomputed icosahedron unit sphere base vertices and midpoint subfaces topology at module evaluation time (`BASE_VERTICES`, `BASE_SUB_FACES`), saving 80-90% CPU calculation time during sphere initialization. Hoisted `SPHERE_CLUSTER` and `FLOATING_LOGOS` out of the render loop.
     * **`HeroImageCarousel.tsx`:** Guarded autoplay interval with `document.visibilityState === 'visible'` to eliminate background GPU/CPU power draw when the tab is inactive.
+11. **Internal Graphics & Rendering Pipeline Enhancements:**
+    * **`GeodesicVectorBackground.tsx`:** Memoized `SingleGeodesicSphere` with `React.memo` and enabled `shapeRendering="geometricPrecision"` for hardware-accelerated edge antialiasing without subpixel rasterization stutters.
+    * **`RandomSplitText.tsx` & `TextReveal.tsx`:** Added `transform-gpu will-change-transform` for GPU composite layer promotion; eliminated micro-timer event loop churn on plain spaces and non-scrambled glyphs.
+    * **`layout.tsx` Font Pipeline:** Added `display: "swap"` to Google Fonts (`Archivo`, `Archivo_Narrow`) to prevent Flash of Invisible Text (FOIT) and improve First Contentful Paint.
+    * **`next.config.ts` Image Caching:** Configured 30-day `minimumCacheTTL` (2,592,000s) and added `avatars.githubusercontent.com` to remotePatterns.
+    * **`Header.tsx` Scroll Fast-Path:** Added top-of-page short-circuit bypass in theme detection to eliminate redundant DOM `getBoundingClientRect` queries when scrolling near top.
 
 ---
 

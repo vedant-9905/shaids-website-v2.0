@@ -25,6 +25,12 @@ export default function Header() {
     let ticking = false;
 
     const handleCheckTheme = () => {
+      // 0. Fast-path shortcut for top of hero section
+      if (window.scrollY < 30) {
+        setIsLightMode(false);
+        return;
+      }
+
       // 1. Check if header is sitting directly over the dark hero card
       const cardEl = document.getElementById("hero-collapse-card");
       if (cardEl) {
