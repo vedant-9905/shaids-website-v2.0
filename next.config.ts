@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion"],
+    optimizePackageImports: ["lucide-react", "framer-motion", "sonner"],
   },
   images: {
     formats: ["image/avif", "image/webp"],

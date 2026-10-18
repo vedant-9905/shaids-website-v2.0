@@ -82,13 +82,13 @@ export default function FeatureNarrativeSection() {
       {/* Top spacing lowering the divider line by ~25px for breathing room below hero text */}
       <div className="w-full pt-8 md:pt-10 relative z-10">
         <div className="w-full relative border-t border-dashed border-black/15">
-          <div className="max-w-[1240px] mx-auto px-4 md:px-8 relative">
-            <div className="absolute top-[-3px] left-4 md:left-8 w-[6px] h-[6px] bg-[#0e76ff]" />
+          <div className="w-full px-4 md:px-7 relative">
+            <div className="absolute top-[-3px] left-4 md:left-7 w-[6px] h-[6px] bg-[#0e76ff]" />
           </div>
         </div>
       </div>
 
-      <div className="max-w-[1240px] mx-auto px-4 md:px-8 pb-16 md:pb-24 relative flex flex-col">
+      <div className="w-full px-4 md:px-7 pb-16 md:pb-24 relative flex flex-col">
         {NARRATIVE_ITEMS.map((item, index) => {
           const isFirst = index === 0;
 
@@ -120,36 +120,46 @@ export default function FeatureNarrativeSection() {
 
               {/* Content Grid: Headline on left, Description on right */}
               {item.isHeroProposition ? (
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-start">
-                  <div className="md:col-span-6">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start w-full">
+                  <div className="md:col-span-5 max-w-[440px]">
                     <h2
-                      className="font-sans text-4xl sm:text-5xl md:text-6xl font-normal tracking-[-2.4px] leading-[0.96]"
-                      style={{ color: "#0a0a0a" }}
+                      className="text-[#0a0a0a] font-sans"
+                      style={{
+                        fontFamily: `'Archivo', sans-serif`,
+                        fontSize: "clamp(44px, 5.2vw, 76px)",
+                        fontWeight: 400,
+                        letterSpacing: "-2.8px",
+                        lineHeight: "0.93"
+                      }}
                     >
-                      {item.title}
+                      The Platform for
+                      <br />
+                      Intelligence &
+                      <br />
+                      Data Science
                     </h2>
                   </div>
-                  <div className="md:col-span-6">
+                  <div className="md:col-span-6 md:col-start-7">
                     {item.description && (
-                      <p className="text-[15.5px] md:text-[16.5px] text-[#334155] leading-[1.5] font-normal tracking-tight mt-1 md:mt-2">
+                      <p className="text-[15px] md:text-[16px] text-[#262626] leading-[1.5] font-normal tracking-tight mt-1 md:mt-2 max-w-[540px]">
                         {item.description}
                       </p>
                     )}
                   </div>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start w-full">
                   {/* Left: Section Headline */}
-                  <div className="md:col-span-5">
+                  <div className="md:col-span-5 max-w-[440px]">
                     <h3 className="font-sans text-3xl sm:text-4xl md:text-[44px] font-normal tracking-[-1.6px] leading-[1.05] text-white">
                       {item.title}
                     </h3>
                   </div>
 
                   {/* Right: Section Description Paragraph */}
-                  <div className="md:col-span-7">
+                  <div className="md:col-span-6 md:col-start-7">
                     {item.description && (
-                      <p className="text-[14.5px] md:text-[15.5px] text-[#cbd5e1] leading-[1.55] font-normal tracking-tight max-w-xl">
+                      <p className="text-[14.5px] md:text-[15.5px] text-[#cbd5e1] leading-[1.55] font-normal tracking-tight max-w-[540px]">
                         {item.description}
                       </p>
                     )}
@@ -163,8 +173,8 @@ export default function FeatureNarrativeSection() {
 
       {/* Bottom Guideline with Precision Pin Corners */}
       <div className="w-full relative border-b border-dashed border-white/20 pb-1">
-        <div className="absolute bottom-[-3px] left-4 md:left-8 w-[6px] h-[6px] bg-[#0e76ff]" />
-        <div className="absolute bottom-[-3px] right-4 md:right-8 w-[6px] h-[6px] bg-[#0e76ff]" />
+        <div className="absolute bottom-[-3px] left-4 md:left-7 w-[6px] h-[6px] bg-[#0e76ff]" />
+        <div className="absolute bottom-[-3px] right-4 md:right-7 w-[6px] h-[6px] bg-[#0e76ff]" />
       </div>
     </motion.section>
   );
