@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  /* Sharplink Brand Tokens */
+  /* Core Design Tokens */
   --brand-blue-primary: #0e76ff;
   --brand-blue-secondary: #99c5ff;
   --off-white: #fdfbf7;
@@ -18,7 +18,7 @@
   --fg-light: #FFFFFF;
   --fg-dark: #000000;
 
-  /* Sharplink Responsive Layout Variables */
+  /* Responsive Grid Layout Variables */
   --layout-columns-count: 4;
   --layout-columns-gap: 16px;
   --layout-rows-gap: 8px;
@@ -68,7 +68,7 @@
     overflow-x: hidden;
   }
 
-  /* Exact Sharplink Typography Hierarchy */
+  /* Typography Hierarchy */
   h1, .h1 {
     font-family: var(--font-archivo), sans-serif;
     font-size: clamp(48px, 6vw, 88px);
@@ -172,7 +172,7 @@
     grid-template-columns: repeat(var(--layout-columns-count), minmax(0, 1fr));
   }
 
-  /* Sharplink 6x6 Pin Marker Accent Dots */
+  /* Precision Pin Marker Accent System */
   .has-pin {
     position: relative;
   }
@@ -229,7 +229,7 @@
     z-index: 10;
   }
 
-  /* Authentic Sharplink Faint Structural Guideline System */
+  /* Faint Structural Guideline Grid System */
   .math-grid {
     background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 32px 32px;
@@ -249,7 +249,7 @@
   }
 }
 
-/* Sharplink UI Button Component Parity */
+/* Interactive Button Component System */
 .ui-button {
   cursor: pointer;
   display: inline-flex;

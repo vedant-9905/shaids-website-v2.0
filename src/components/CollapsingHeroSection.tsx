@@ -34,44 +34,40 @@ export default function CollapsingHeroSection() {
     offset: ["start start", "end end"],
   });
 
-  // Instant 1:1 Zero-Lag Keyframe Transforms mapped across 400vh extended track [0, 0.65]:
-  const cardWidth = useTransform(scrollYProgress, [0, 0.65], ["100%", "32%"]);
-  const cardHeight = useTransform(scrollYProgress, [0, 0.65], [`${winHeight}px`, "560px"]);
-  const cardMarginTop = useTransform(scrollYProgress, [0, 0.65], ["0px", "59px"]);
-  const cardMarginBottom = useTransform(scrollYProgress, [0, 0.65], ["0px", "0px"]);
-
-  // 1. Initial Hero Content ("Ethereum with an Edge" & CTAs) fades out smoothly across [0, 0.22]
-  const heroTextOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
-  const heroTextY = useTransform(scrollYProgress, [0, 0.22], [0, -30]);
-  const heroTextVisibility = useTransform(scrollYProgress, (v) => v >= 0.22 ? "hidden" : "visible");
-  const heroTextDisplay = useTransform(scrollYProgress, (v) => v >= 0.25 ? "none" : "flex");
-
-  // Light content ("Pioneering Productivity" & Right Cards) slides up gradually and STAYS AT 100% OPACITY
-  const lightContentOpacity = useTransform(scrollYProgress, [0, 0.45, 1.0], [0, 1, 1]);
-  const lightContentY = useTransform(scrollYProgress, [0, 0.65], [140, 0]);
-
-  // Silky smooth easeOutCubic helper function for gentle fluid deceleration
+  // Silky smooth easeOutCubic helper function for organic fluid deceleration
   const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
-  // Stately sequential horizontal right-slide keyframes (fully docked by 0.61, locked solid till 1.0)
-  const card1X = useTransform(scrollYProgress, [0.10, 0.45, 1.0], [360, 0, 0], { ease: easeOutCubic });
-  const card2X = useTransform(scrollYProgress, [0.18, 0.53, 1.0], [440, 0, 0], { ease: easeOutCubic });
-  const card3X = useTransform(scrollYProgress, [0.26, 0.61, 1.0], [520, 0, 0], { ease: easeOutCubic });
+  // Smooth, gradual 1:1 Scroll Transforms across [0, 1.0] with organic deceleration:
+  const cardWidth = useTransform(scrollYProgress, [0, 1.0], ["100%", "32%"], { ease: easeOutCubic });
+  const cardHeight = useTransform(scrollYProgress, [0, 1.0], [`${winHeight}px`, "560px"], { ease: easeOutCubic });
+  const cardMarginTop = useTransform(scrollYProgress, [0, 1.0], ["0px", "59px"], { ease: easeOutCubic });
+  const cardMarginBottom = useTransform(scrollYProgress, [0, 1.0], ["0px", "0px"]);
 
-  const card1Opacity = useTransform(scrollYProgress, [0.10, 0.35, 1.0], [0, 1, 1]);
-  const card2Opacity = useTransform(scrollYProgress, [0.18, 0.43, 1.0], [0, 1, 1]);
-  const card3Opacity = useTransform(scrollYProgress, [0.26, 0.51, 1.0], [0, 1, 1]);
+  // 1. Initial Hero Content gently dissolves across [0, 0.28]
+  const heroTextOpacity = useTransform(scrollYProgress, [0, 0.28], [1, 0]);
+  const heroTextY = useTransform(scrollYProgress, [0, 0.28], [0, -30], { ease: easeOutCubic });
+  const heroTextVisibility = useTransform(scrollYProgress, (v) => v >= 0.28 ? "hidden" : "visible");
+  const heroTextDisplay = useTransform(scrollYProgress, (v) => v >= 0.30 ? "none" : "flex");
 
-  // 2. Pristine Pure Blue Space Window [0.22, 0.35]:
-  // Neither main hero content nor dashboard stats are visible—the collapsing blue card is completely clean and empty!
+  // Light background content smoothly rises and locks right as the card docks
+  const lightContentOpacity = useTransform(scrollYProgress, [0.10, 0.55, 1.0], [0, 1, 1]);
+  const lightContentY = useTransform(scrollYProgress, [0.10, 1.0], [140, 0], { ease: easeOutCubic });
 
-  // 3. Collapsed Card Dashboard Stats & Graph Overlay fades in ultra-smoothly across [0.35, 0.65] and STAYS AT 100% OPACITY
-  // 4. Generous Resting Hold Runway across [0.65, 1.0] (840px of steady view)
-  const collapsedContentOpacity = useTransform(scrollYProgress, [0, 0.35, 0.65, 1.0], [0, 0, 1, 1]);
-  const collapsedContentDisplay = useTransform(scrollYProgress, (v) => v >= 0.32 ? "flex" : "none");
+  // Stately sequential horizontal right-slide keyframes (smoothly gliding into place by 0.96)
+  const card1X = useTransform(scrollYProgress, [0.18, 0.72, 1.0], [360, 0, 0], { ease: easeOutCubic });
+  const card2X = useTransform(scrollYProgress, [0.28, 0.84, 1.0], [440, 0, 0], { ease: easeOutCubic });
+  const card3X = useTransform(scrollYProgress, [0.38, 0.96, 1.0], [520, 0, 0], { ease: easeOutCubic });
+
+  const card1Opacity = useTransform(scrollYProgress, [0.18, 0.50, 1.0], [0, 1, 1]);
+  const card2Opacity = useTransform(scrollYProgress, [0.28, 0.62, 1.0], [0, 1, 1]);
+  const card3Opacity = useTransform(scrollYProgress, [0.38, 0.76, 1.0], [0, 1, 1]);
+
+  // 2. Collapsed Card Dashboard Stats & Carousel fade in smoothly across [0.45, 0.92]
+  const collapsedContentOpacity = useTransform(scrollYProgress, [0, 0.45, 0.92, 1.0], [0, 0, 1, 1]);
+  const collapsedContentDisplay = useTransform(scrollYProgress, (v) => v >= 0.42 ? "flex" : "none");
 
   return (
-    <section ref={containerRef} className="relative w-full" style={{ height: "500vh" }}>
+    <section ref={containerRef} className="relative w-full" style={{ height: "400vh" }}>
       <motion.div
         className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center"
         style={{
@@ -85,12 +81,12 @@ export default function CollapsingHeroSection() {
       >
 
         {/* Light Theme Background Content (Slides up simultaneously from below and stays at top edge) */}
-        <motion.div 
+        <motion.div
           style={{ opacity: lightContentOpacity, y: lightContentY }}
           className="absolute inset-0 flex items-center justify-center w-full h-full px-4 md:px-7 pointer-events-auto overflow-hidden"
         >
           {/* Master 3-Column Container: Outer Pinned to Hero Margins, Columns Extended Inwards */}
-          <motion.div 
+          <motion.div
             style={{ marginTop: cardMarginTop }}
             className="w-full h-[560px] flex justify-between gap-6 md:gap-8 relative px-0"
           >
@@ -101,7 +97,7 @@ export default function CollapsingHeroSection() {
               <div>
                 <div className="w-[6px] h-[6px] bg-[#0e76ff] mb-4" />
                 <div className="select-none">
-                  <h2 
+                  <h2
                     className="text-[#0a0a0a] font-sans"
                     style={{
                       fontFamily: `'Archivo', sans-serif`,
@@ -113,7 +109,7 @@ export default function CollapsingHeroSection() {
                   >
                     <RandomSplitText text="Pioneering:" initialDelay={0.05} scrollYProgress={scrollYProgress} triggerThreshold={0.06} />
                   </h2>
-                  <div 
+                  <div
                     className="text-[#0a0a0a] font-sans mt-2"
                     style={{
                       fontFamily: `'Archivo', sans-serif`,
@@ -214,21 +210,21 @@ export default function CollapsingHeroSection() {
             background: `
               radial-gradient(ellipse 130% 90% at 50% 50%, rgba(8, 66, 147, 0.35) 0%, transparent 70%),
               linear-gradient(180deg, 
-                #020914 0%, 
-                #051a38 20%, 
+                #000000ff 0%, 
+                #051a38 25%, 
                 #0a4084 52%, 
                 #3175c4 78%, 
-                #5293de 100%
+                #95bdeaff 100%
               )
             `
           }}
           className="has-pin has-pin--top-left has-pin--bottom-right has-pin__light absolute z-20 flex flex-col items-center justify-center overflow-hidden border-none shadow-[0_8px_24px_rgba(0,0,0,0.06)]"
         >
-          {/* Sharplink Authentic Concentric Wave Overlay Image */}
+          {/* Kinetic Wave Overlay Image */}
           <div className="absolute inset-0 opacity-60 pointer-events-none z-0 mix-blend-screen">
             <Image
               src="/images/heroOverlay_homepage.avif"
-              alt="Sharplink Kinetic Background"
+              alt="Kinetic Background Overlay"
               fill
               className="object-cover object-center"
               priority
@@ -316,43 +312,43 @@ export default function CollapsingHeroSection() {
                 href="/events"
                 className="card-latest-press has-pin has-pin--light w-full md:w-80 group text-left relative z-10"
               >
-                  <div className="header">
-                    <div className="eyebrow flex items-center gap-1.5 text-[12px] tracking-wider text-white">
-                      <span>ANNUAL TECH FEST</span>
-                    </div>
-                    <div className="date text-[12px] tracking-wider text-[#f3f3f3]/60">AUG 10, 2026</div>
+                <div className="header">
+                  <div className="eyebrow flex items-center gap-1.5 text-[12px] tracking-wider text-white">
+                    <span>ANNUAL TECH FEST</span>
                   </div>
-                  <div className="body mt-4">
-                    <div className="summary text-[15px] font-medium text-white leading-snug">
-                      VECTORS 2026: National AI Hackathon & Tech Fest Announced
-                    </div>
-                    <div className="ui-button primary allow-parent-hover has-icon cta shrink-0">
-                      <div className="icon theme-dark btn-secondary group-hover:bg-[#0e76ff] transition-colors">
-                        <div className="btn-icon-roll">
-                          <span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <line x1="5" y1="12" x2="19" y2="12" />
-                              <polyline points="12 5 19 12 12 19" />
-                            </svg>
-                          </span>
-                          <span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <line x1="5" y1="12" x2="19" y2="12" />
-                              <polyline points="12 5 19 12 12 19" />
-                            </svg>
-                          </span>
-                        </div>
+                  <div className="date text-[12px] tracking-wider text-[#f3f3f3]/60">AUG 10, 2026</div>
+                </div>
+                <div className="body mt-4">
+                  <div className="summary text-[15px] font-medium text-white leading-snug">
+                    VECTORS 2026: National AI Hackathon & Tech Fest Announced
+                  </div>
+                  <div className="ui-button primary allow-parent-hover has-icon cta shrink-0">
+                    <div className="icon theme-dark btn-secondary group-hover:bg-[#0e76ff] transition-colors">
+                      <div className="btn-icon-roll">
+                        <span>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                          </svg>
+                        </span>
+                        <span>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                          </svg>
+                        </span>
                       </div>
                     </div>
                   </div>
-                </Link>
+                </div>
+              </Link>
             </div>
           </motion.div>
 
           {/* Authentic Collapsed Card Dashboard Stats & Chart Overlay (Matches Screenshot 1:1) */}
           <motion.div
             style={{ opacity: collapsedContentOpacity, display: collapsedContentDisplay }}
-            className="absolute inset-0 z-30 flex flex-col justify-between p-6 md:p-7 text-white w-full h-full pointer-events-auto"
+            className="absolute inset-0 z-30 flex flex-col justify-between px-5 md:px-6 pt-5 md:pt-6 pb-3.5 md:pb-4 text-white w-full h-full pointer-events-auto"
           >
             {/* Top-Left Bright Blue Square Pin */}
             <div className="absolute top-0 left-0 w-[6px] h-[6px] bg-[#0e76ff] z-40" />
@@ -386,18 +382,18 @@ export default function CollapsingHeroSection() {
             {/* Bottom Joined Dual-Cell CTA Bar Matching Reference 1:1 */}
             <Link
               href="/about"
-              className="w-full flex items-center gap-[2px] group text-white pointer-events-auto select-none"
+              className="w-full flex items-center gap-[2px] group text-white pointer-events-auto select-none mb-[7px]"
             >
               {/* Left Cell: Main Action Text */}
-              <div className="flex-1 h-11 bg-[#5b6f85]/50 group-hover:bg-[#5b6f85]/70 transition-colors backdrop-blur-md flex items-center justify-center px-4">
-                <span className="text-[12px] font-mono tracking-[1.04px] font-bold text-white uppercase">
+              <div className="flex-1 h-[34px] bg-[#617283]/85 group-hover:bg-[#617283] transition-colors backdrop-blur-md flex items-center justify-center px-4">
+                <span className="text-[11.5px] font-mono tracking-[0.8px] font-semibold text-white uppercase">
                   MORE IN ABOUT
                 </span>
               </div>
 
               {/* Right Cell: Arrow Button Box */}
-              <div className="w-11 h-11 bg-[#5b6f85]/70 group-hover:bg-[#0e76ff] transition-colors backdrop-blur-md flex items-center justify-center shrink-0">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+              <div className="w-[34px] h-[34px] bg-[#617283]/90 group-hover:bg-[#0e76ff] transition-colors backdrop-blur-md flex items-center justify-center shrink-0">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
