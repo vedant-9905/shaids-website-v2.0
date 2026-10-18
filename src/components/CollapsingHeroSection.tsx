@@ -72,10 +72,9 @@ export default function CollapsingHeroSection() {
         className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center"
         style={{
           background: `
-            radial-gradient(ellipse 90% 70% at 20% 10%, rgba(185, 212, 238, 0.85) 0%, transparent 65%),
-            radial-gradient(ellipse 80% 60% at 85% 35%, rgba(195, 220, 244, 0.7) 0%, transparent 60%),
-            radial-gradient(ellipse 90% 70% at 50% 85%, rgba(215, 232, 248, 0.6) 0%, transparent 75%),
-            linear-gradient(180deg, #cadbe9 0%, #dbf5ff 0%, #dbe6f2 25%, #eaf1f7 60%, #e8f1fa 100%)
+            radial-gradient(ellipse 90% 50% at 20% 0%, rgba(185, 212, 238, 0.75) 0%, transparent 60%),
+            radial-gradient(ellipse 80% 50% at 85% 15%, rgba(195, 220, 244, 0.6) 0%, transparent 55%),
+            linear-gradient(180deg, #cadbe9 0%, #dbe6f2 20%, #eaf1f7 45%, #eaf1f7 100%)
           `
         }}
       >
@@ -218,7 +217,7 @@ export default function CollapsingHeroSection() {
               )
             `
           }}
-          className="has-pin has-pin--top-left has-pin--bottom-right has-pin__light absolute z-20 flex flex-col items-center justify-center overflow-hidden border-none shadow-[0_8px_24px_rgba(0,0,0,0.06)]"
+          className="has-pin has-pin--top-left has-pin--bottom-right has-pin__light absolute z-20 flex flex-col items-center justify-center overflow-hidden border-none shadow-none"
         >
           {/* Kinetic Wave Overlay Image */}
           <div className="absolute inset-0 opacity-60 pointer-events-none z-0 mix-blend-screen">

@@ -10,11 +10,11 @@ export default function SmoothScroll({
 }) {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 0.7,
+      duration: 0.85,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 1.15,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1.21,
+      touchMultiplier: 1.55,
     });
 
     let rafId: number;
